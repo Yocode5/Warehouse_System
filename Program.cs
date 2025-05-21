@@ -17,8 +17,8 @@ namespace Warehouse_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new accessories());
-            //Application.Run(new supplier());
-            Application.Run(new productNames());
+            Application.Run(new supplier());
+            //Application.Run(new productNames());
             //Application.Run(new RestockProducts());
             //Application.Run(new DispatchItems());
         }
