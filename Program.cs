@@ -16,6 +16,10 @@ namespace Warehouse_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            string projectFolder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.StartupPath, @"..\..\"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", projectFolder);
+
             //Application.Run(new accessories());
             Application.Run(new supplier());
             //Application.Run(new productNames());
