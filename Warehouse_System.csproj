@@ -142,11 +142,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Warehouse_DB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Warehouse_DB.mdf" />
     <Content Include="Warehouse_DB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Warehouse_DB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
