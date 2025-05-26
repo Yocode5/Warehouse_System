@@ -23,8 +23,8 @@ namespace Warehouse_System
             //Application.Run(new accessories());
             //Application.Run(new supplier());
             //Application.Run(new productNames());
-            Application.Run(new RestockProducts());
-            //Application.Run(new DispatchItems());
+            //Application.Run(new RestockProducts());
+            Application.Run(new DispatchItems());
         }
     }
 }
