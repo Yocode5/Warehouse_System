@@ -51,9 +51,9 @@ namespace Warehouse_System
             SqlDataAdapter da = new SqlDataAdapter("SELECT SupplierId, SupplierName FROM Supplier", con);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            comboBox1.DataSource = dt;
-            comboBox1.DisplayMember = "SupplierName";
-            comboBox1.ValueMember = "SupplierId";
+            comboBoxSupplier.DataSource = dt;
+            comboBoxSupplier.DisplayMember = "SupplierName";
+            comboBoxSupplier.ValueMember = "SupplierId";
         }
 
         private void load_Products() {
@@ -84,7 +84,7 @@ namespace Warehouse_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(textBoxPName.Text) || string.IsNullOrWhiteSpace(textBoxPName.Text))
             {
                 MessageBox.Show("Please Enter All the Details. ");
                 return;
@@ -92,10 +92,10 @@ namespace Warehouse_System
 
             string query = "INSERT INTO Products (ProductName, AccessoryId, SupplierId, Product_Quantity) VALUES (@name, @accessoryId, @supplierId, @quantity)";
             SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@name", textBox1.Text);
+            cmd.Parameters.AddWithValue("@name", textBoxPName.Text);
             cmd.Parameters.AddWithValue("@accessoryId", SelectUnit.SelectedValue);
-            cmd.Parameters.AddWithValue("@supplierId", comboBox1.SelectedValue);
-            cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(textBox2.Text));
+            cmd.Parameters.AddWithValue("@supplierId", comboBoxSupplier.SelectedValue);
+            cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(textBoxQTY.Text));
 
             con.Open();
             cmd.ExecuteNonQuery();
