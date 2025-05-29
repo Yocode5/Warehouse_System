@@ -69,23 +69,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="accessories.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="accessories.Designer.cs">
-      <DependentUpon>accessories.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminUI.Designer.cs">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\AccessoryDA.cs" />
+    <Compile Include="DataAccess\BaseDA.cs" />
+    <Compile Include="DataAccess\SupplierDA.cs" />
     <Compile Include="DispatchItems.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DispatchItems.Designer.cs">
       <DependentUpon>DispatchItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccessoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccessoryForm.Designer.cs">
+      <DependentUpon>AccessoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -93,6 +102,8 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Accessory.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="productNames.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,12 +118,6 @@
     <Compile Include="RestockProducts.Designer.cs">
       <DependentUpon>RestockProducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="supplier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="supplier.Designer.cs">
-      <DependentUpon>supplier.cs</DependentUpon>
-    </Compile>
     <Compile Include="WarehouseManagerUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,14 +130,17 @@
     <Compile Include="WarehouseStaffUI.Designer.cs">
       <DependentUpon>WarehouseStaffUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="accessories.resx">
-      <DependentUpon>accessories.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdminUI.resx">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DispatchItems.resx">
       <DependentUpon>DispatchItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccessoryForm.resx">
+      <DependentUpon>AccessoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -152,9 +160,6 @@
     </Compile>
     <EmbeddedResource Include="RestockProducts.resx">
       <DependentUpon>RestockProducts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="supplier.resx">
-      <DependentUpon>supplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WarehouseManagerUI.resx">
       <DependentUpon>WarehouseManagerUI.cs</DependentUpon>
@@ -201,5 +206,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

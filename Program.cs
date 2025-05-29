@@ -21,8 +21,8 @@ namespace Warehouse_System
             AppDomain.CurrentDomain.SetData("DataDirectory", projectFolder);
 
             //Application.Run(new Login());
-            //Application.Run(new accessories());
-            //Application.Run(new supplier());
+            //Application.Run(new AccessoryForm());
+            Application.Run(new SupplierForm());
             //Application.Run(new productNames());
             //Application.Run(new RestockProducts());
             //Application.Run(new DispatchItems());
