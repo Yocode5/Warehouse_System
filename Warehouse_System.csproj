@@ -48,6 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -68,6 +74,12 @@
     </Compile>
     <Compile Include="accessories.Designer.cs">
       <DependentUpon>accessories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminUI.Designer.cs">
+      <DependentUpon>AdminUI.cs</DependentUpon>
     </Compile>
     <Compile Include="DispatchItems.cs">
       <SubType>Form</SubType>
@@ -101,8 +113,23 @@
     <Compile Include="supplier.Designer.cs">
       <DependentUpon>supplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="WarehouseManagerUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseManagerUI.Designer.cs">
+      <DependentUpon>WarehouseManagerUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseStaffUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseStaffUI.Designer.cs">
+      <DependentUpon>WarehouseStaffUI.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="accessories.resx">
       <DependentUpon>accessories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminUI.resx">
+      <DependentUpon>AdminUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DispatchItems.resx">
       <DependentUpon>DispatchItems.cs</DependentUpon>
@@ -121,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RestockProducts.resx">
       <DependentUpon>RestockProducts.cs</DependentUpon>
@@ -128,6 +156,13 @@
     <EmbeddedResource Include="supplier.resx">
       <DependentUpon>supplier.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseManagerUI.resx">
+      <DependentUpon>WarehouseManagerUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseStaffUI.resx">
+      <DependentUpon>WarehouseStaffUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +177,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WArehouse Login.png" />
+    <None Include="Resources\WArehouse Login1.png" />
+    <None Include="Resources\Stock-Infinite - Logo Main 2.png" />
+    <None Include="Resources\pngtree-recruitment-job-for-social-media-admin-png-image_6478542.png" />
+    <None Include="Resources\inventory-control-by-online-system-inventory-management-with-goods-demand-professional-worker-is-checking-goods-and-stock-supply-vector.jpg" />
+    <None Include="Resources\inventory-control-by-online-system-inventory-management-with-goods-demand-professional-worker-is-checking-goods-and-stock-supply-vector.png" />
+    <None Include="Resources\82648732_9950462.png" />
     <Content Include="Warehouse_DB.mdf" />
     <Content Include="Warehouse_DB_log.ldf">
       <DependentUpon>Warehouse_DB.mdf</DependentUpon>

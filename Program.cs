@@ -20,11 +20,15 @@ namespace Warehouse_System
             string projectFolder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.StartupPath, @"..\..\"));
             AppDomain.CurrentDomain.SetData("DataDirectory", projectFolder);
 
+            //Application.Run(new Login());
             //Application.Run(new accessories());
             //Application.Run(new supplier());
             //Application.Run(new productNames());
             //Application.Run(new RestockProducts());
-            Application.Run(new DispatchItems());
+            //Application.Run(new DispatchItems());
+            //Application.Run(new AdminUI());
+            //Application.Run(new WarehouseManagerUI());
+            //Application.Run(new WarehouseStaffUI());
         }
     }
 }
