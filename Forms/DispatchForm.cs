@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Warehouse_System.DataAccess;
+using Warehouse_System.Models;
+
+namespace Warehouse_System
+{
+    public partial class DispatchForm: Form
+    {
+        private readonly DispatchDA dispatchDA;
+
+        public DispatchForm()
+        {
+            InitializeComponent();
+            dispatchDA = new DispatchDA();
+            LoadBranches();
+            LoadProducts();
+        }
+
+        //Load the Brnach information using the DA files
+        private void LoadBranches()
+        {
+            try
+            {
+                comboBox1.DataSource = dispatchDA.GetAllBranches();
+                comboBox1.DisplayMember = "BranchName";
+                comboBox1.ValueMember = "BranchId";
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error Loadig Brnaches: " + ex.Message);
+            }
+        }
+
+        private void LoadProducts()
+        {
+            try
+            {
+                comboBox2.DataSource = dispatchDA.GetAllProducts();
+                comboBox2.DisplayMember = "ProductName";
+                comboBox2.ValueMember = "ProductId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Loadig Products: " + ex.Message);
+            }
+        }
+
+        private void DispatchItems_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1 || string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
+            if (!int.TryParse(textBox3.Text, out int dispatchQTY) || dispatchQTY <= 0)
+            {
+                MessageBox.Show("Enter a Valid quantity greater than 0");
+                return;
+            }
+
+            int branchId = Convert.ToInt32(comboBox1.SelectedValue);
+            int productId = Convert.ToInt32(comboBox2.SelectedValue);
+            DateTime dispatchDate = dateTimePicker1.Value;
+
+            try
+            {
+
+                int currentStock = Convert.ToInt32(dispatchDA.GetProductsStock(productId));
+
+                if (dispatchQTY > currentStock)
+                {
+                    MessageBox.Show("Not enough Stock Avaliable");
+                    return;
+                }
+
+                Dispatch dispatch = new Dispatch
+                {
+                    BranchId = branchId,
+                    ProductId = productId,
+                    Quantity = dispatchQTY,
+                    DispatchDate = dispatchDate
+                };
+
+                dispatchDA.InsertDispatch(dispatch);
+                dispatchDA.UpdateStock(productId, dispatchQTY);
+
+                MessageBox.Show("Items Successfully Dispatched.");
+                textBox3.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error While dispatching: " + ex.Message);
+            }
+        }
+    }
+}

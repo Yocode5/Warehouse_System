@@ -21,6 +21,11 @@ namespace Warehouse_System
         public WarehouseManagerUI()
         {
             InitializeComponent();
+            Load_DaysDuration();
+        }
+
+        private void Load_DaysDuration()
+        {
             comboBox1.Items.Clear();
             comboBox1.Items.Add("Past 5 days");
             comboBox1.Items.Add("Past 15 days");
@@ -69,7 +74,10 @@ namespace Warehouse_System
             //Finding the starting date for the Tables 
             DateTime startDate = DateTime.Now.AddDays(-daysSince);
 
-            //Creating queries to retrieve data from the log Tables 
+            //Creating queries to retrieve data from the log Tables
+            string ProductsQuery = @"
+                            SELECT P.ProductId, P";
+
             string RestockQuery = @"
                             SELECT P.ProductName, S.SupplierName, A.AccessoryName, RM.QTY, RM.RestockDate
                             FROM Restock_Master RM
@@ -106,6 +114,7 @@ namespace Warehouse_System
             string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Warehouse_DB.mdf;Integrated Security=True";
 
             //Defining Datatables
+            DataTable productsTable = new DataTable();
             DataTable restockTable = new DataTable();
             DataTable dispatchTable = new DataTable();
             string topDispatched = "-", topRestocked = "-", topSupplier = "-";
@@ -154,7 +163,7 @@ namespace Warehouse_System
             PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
             doc.Open();
 
-            var title = new Paragraph($"Warehouse Report ({filter})", FontFactory.GetFont("Arial", BaseFont.CP1252,Font.Bold, 18));
+            var title = new Paragraph($"Stock Infinite - Warehouse Report ({filter})", FontFactory.GetFont("Arial", BaseFont.CP1252,Font.Bold, 18));
             title.Alignment = Element.ALIGN_CENTER;
             doc.Add(title);
             doc.Add(new Paragraph("\n--- Summary Insights---\n"));

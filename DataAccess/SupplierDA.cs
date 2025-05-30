@@ -13,7 +13,7 @@ namespace Warehouse_System.DataAccess
     {
         public SupplierDA(string connectionString) : base(connectionString) { }
         public SupplierDA()
-           : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\samad\Desktop\Warehouse_System\Warehouse_DB.mdf;Integrated Security=True") { }
+           : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Warehouse_DB.mdf;Integrated Security=True") { }
 
         public void AddSupplier(Supplier supplier)
         {

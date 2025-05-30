@@ -52,6 +52,7 @@ namespace Warehouse_System
                     return;
                 }
 
+
                 Accessory accessory = new Accessory
                 {
                     AccessoryName = textBoxAccName.Text.Trim(),
