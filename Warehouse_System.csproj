@@ -77,12 +77,22 @@
     </Compile>
     <Compile Include="DataAccess\AccessoryDA.cs" />
     <Compile Include="DataAccess\BaseDA.cs" />
+    <Compile Include="DataAccess\BranchDA.cs" />
+    <Compile Include="DataAccess\DispatchDA.cs" />
+    <Compile Include="DataAccess\LoginDA.cs" />
+    <Compile Include="DataAccess\ProductDA.cs" />
     <Compile Include="DataAccess\SupplierDA.cs" />
-    <Compile Include="DispatchItems.cs">
+    <Compile Include="Forms\BranchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DispatchItems.Designer.cs">
-      <DependentUpon>DispatchItems.cs</DependentUpon>
+    <Compile Include="Forms\BranchForm.Designer.cs">
+      <DependentUpon>BranchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DispatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DispatchForm.Designer.cs">
+      <DependentUpon>DispatchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AccessoryForm.cs">
       <SubType>Form</SubType>
@@ -96,19 +106,23 @@
     <Compile Include="Forms\SupplierForm.Designer.cs">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Accessory.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\Dispatch.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Supplier.cs" />
-    <Compile Include="productNames.cs">
+    <Compile Include="Forms\ProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="productNames.Designer.cs">
-      <DependentUpon>productNames.cs</DependentUpon>
+    <Compile Include="Forms\ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,8 +147,11 @@
     <EmbeddedResource Include="AdminUI.resx">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DispatchItems.resx">
-      <DependentUpon>DispatchItems.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BranchForm.resx">
+      <DependentUpon>BranchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DispatchForm.resx">
+      <DependentUpon>DispatchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccessoryForm.resx">
       <DependentUpon>AccessoryForm.cs</DependentUpon>
@@ -142,11 +159,11 @@
     <EmbeddedResource Include="Forms\SupplierForm.resx">
       <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="productNames.resx">
-      <DependentUpon>productNames.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

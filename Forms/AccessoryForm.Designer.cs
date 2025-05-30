@@ -147,7 +147,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Name = "AccessoryForm";
-            this.Text = "accessories";
+            this.Text = "Accessories";
             this.Load += new System.EventHandler(this.AccessoriesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);

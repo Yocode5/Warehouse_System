@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Warehouse_System.Forms;
 
 namespace Warehouse_System
 {
@@ -20,12 +21,13 @@ namespace Warehouse_System
             string projectFolder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.StartupPath, @"..\..\"));
             AppDomain.CurrentDomain.SetData("DataDirectory", projectFolder);
 
-            //Application.Run(new Login());
+            //Application.Run(new LoginForm());
+            //Application.Run(new BranchForm());
             //Application.Run(new AccessoryForm());
-            Application.Run(new SupplierForm());
-            //Application.Run(new productNames());
+            //Application.Run(new SupplierForm());
+            Application.Run(new ProductForm());
             //Application.Run(new RestockProducts());
-            //Application.Run(new DispatchItems());
+            //Application.Run(new DispatchForm());
             //Application.Run(new AdminUI());
             //Application.Run(new WarehouseManagerUI());
             //Application.Run(new WarehouseStaffUI());
