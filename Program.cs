@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Warehouse_System.Forms;
+using Warehouse_System.Models;
 
 namespace Warehouse_System
 {
@@ -25,12 +26,13 @@ namespace Warehouse_System
             //Application.Run(new BranchForm());
             //Application.Run(new AccessoryForm());
             //Application.Run(new SupplierForm());
-            Application.Run(new ProductForm());
-            //Application.Run(new RestockProducts());
+            //Application.Run(new ProductForm());
+            Application.Run(new ProductRestockForm());
             //Application.Run(new DispatchForm());
             //Application.Run(new AdminUI());
             //Application.Run(new WarehouseManagerUI());
             //Application.Run(new WarehouseStaffUI());
+            //Application.Run(new EmployeeForm());
         }
     }
 }
