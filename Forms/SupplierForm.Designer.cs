@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierForm));
             this.panelSInsert = new System.Windows.Forms.Panel();
             this.buttonSInsert = new System.Windows.Forms.Button();
             this.textBoxSAddress = new System.Windows.Forms.TextBox();
@@ -56,13 +57,19 @@
             this.labelUSId = new System.Windows.Forms.Label();
             this.buttonSUpdateSelected = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.BackToDashboard = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelSInsert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSupplier)).BeginInit();
             this.panelSUpdate.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSInsert
             // 
+            this.panelSInsert.BackColor = System.Drawing.Color.LightBlue;
+            this.panelSInsert.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelSInsert.Controls.Add(this.buttonSInsert);
             this.panelSInsert.Controls.Add(this.textBoxSAddress);
             this.panelSInsert.Controls.Add(this.textBoxSEmail);
@@ -74,9 +81,9 @@
             this.panelSInsert.Controls.Add(this.labelSPhone);
             this.panelSInsert.Controls.Add(this.labelSName);
             this.panelSInsert.Controls.Add(this.labelSId);
-            this.panelSInsert.Location = new System.Drawing.Point(21, 100);
+            this.panelSInsert.Location = new System.Drawing.Point(109, 100);
             this.panelSInsert.Name = "panelSInsert";
-            this.panelSInsert.Size = new System.Drawing.Size(546, 337);
+            this.panelSInsert.Size = new System.Drawing.Size(550, 337);
             this.panelSInsert.TabIndex = 0;
             // 
             // buttonSInsert
@@ -182,12 +189,12 @@
             this.dataGridViewSupplier.AllowUserToAddRows = false;
             this.dataGridViewSupplier.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridViewSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSupplier.Location = new System.Drawing.Point(677, 100);
+            this.dataGridViewSupplier.Location = new System.Drawing.Point(701, 100);
             this.dataGridViewSupplier.Name = "dataGridViewSupplier";
             this.dataGridViewSupplier.RowHeadersWidth = 51;
             this.dataGridViewSupplier.RowTemplate.Height = 24;
             this.dataGridViewSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSupplier.Size = new System.Drawing.Size(742, 337);
+            this.dataGridViewSupplier.Size = new System.Drawing.Size(727, 337);
             this.dataGridViewSupplier.TabIndex = 1;
             // 
             // buttonSDelete
@@ -195,9 +202,9 @@
             this.buttonSDelete.BackColor = System.Drawing.Color.Teal;
             this.buttonSDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonSDelete.Location = new System.Drawing.Point(1089, 464);
+            this.buttonSDelete.Location = new System.Drawing.Point(1113, 467);
             this.buttonSDelete.Name = "buttonSDelete";
-            this.buttonSDelete.Size = new System.Drawing.Size(266, 43);
+            this.buttonSDelete.Size = new System.Drawing.Size(251, 52);
             this.buttonSDelete.TabIndex = 11;
             this.buttonSDelete.Text = "Delete Selected Supplier";
             this.buttonSDelete.UseVisualStyleBackColor = false;
@@ -205,6 +212,8 @@
             // 
             // panelSUpdate
             // 
+            this.panelSUpdate.BackColor = System.Drawing.Color.LightBlue;
+            this.panelSUpdate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelSUpdate.Controls.Add(this.buttonSUpdate);
             this.panelSUpdate.Controls.Add(this.textBoxUSAddress);
             this.panelSUpdate.Controls.Add(this.textBoxUSEmail);
@@ -216,9 +225,9 @@
             this.panelSUpdate.Controls.Add(this.labelUSPhone);
             this.panelSUpdate.Controls.Add(this.labelUSName);
             this.panelSUpdate.Controls.Add(this.labelUSId);
-            this.panelSUpdate.Location = new System.Drawing.Point(21, 464);
+            this.panelSUpdate.Location = new System.Drawing.Point(109, 464);
             this.panelSUpdate.Name = "panelSUpdate";
-            this.panelSUpdate.Size = new System.Drawing.Size(546, 337);
+            this.panelSUpdate.Size = new System.Drawing.Size(550, 337);
             this.panelSUpdate.TabIndex = 11;
             // 
             // buttonSUpdate
@@ -324,9 +333,9 @@
             this.buttonSUpdateSelected.BackColor = System.Drawing.Color.Teal;
             this.buttonSUpdateSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSUpdateSelected.ForeColor = System.Drawing.Color.White;
-            this.buttonSUpdateSelected.Location = new System.Drawing.Point(736, 464);
+            this.buttonSUpdateSelected.Location = new System.Drawing.Point(760, 467);
             this.buttonSUpdateSelected.Name = "buttonSUpdateSelected";
-            this.buttonSUpdateSelected.Size = new System.Drawing.Size(284, 43);
+            this.buttonSUpdateSelected.Size = new System.Drawing.Size(269, 52);
             this.buttonSUpdateSelected.TabIndex = 12;
             this.buttonSUpdateSelected.Text = "Update Selected Supplier";
             this.buttonSUpdateSelected.UseVisualStyleBackColor = false;
@@ -336,33 +345,66 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(618, 29);
+            this.label1.Location = new System.Drawing.Point(620, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(281, 36);
             this.label1.TabIndex = 11;
             this.label1.Text = "Manage Suppliers ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // supplier
+            // BackToDashboard
+            // 
+            this.BackToDashboard.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.BackToDashboard.ForeColor = System.Drawing.Color.White;
+            this.BackToDashboard.Location = new System.Drawing.Point(45, 17);
+            this.BackToDashboard.Name = "BackToDashboard";
+            this.BackToDashboard.Size = new System.Drawing.Size(175, 48);
+            this.BackToDashboard.TabIndex = 13;
+            this.BackToDashboard.Text = "Back To Dashboard";
+            this.BackToDashboard.UseVisualStyleBackColor = false;
+            this.BackToDashboard.Click += new System.EventHandler(this.BackToDashboard_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(45, 78);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1452, 742);
+            this.panel1.TabIndex = 14;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(655, 364);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(727, 101);
+            this.panel2.TabIndex = 0;
+            // 
+            // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(1504, 813);
+            this.ClientSize = new System.Drawing.Size(1542, 856);
+            this.Controls.Add(this.BackToDashboard);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSUpdateSelected);
             this.Controls.Add(this.panelSUpdate);
             this.Controls.Add(this.buttonSDelete);
             this.Controls.Add(this.dataGridViewSupplier);
             this.Controls.Add(this.panelSInsert);
-            this.Name = "supplier";
-            this.Text = "supplier";
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SupplierForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Supplier Management - Stock Infinite Warehouse";
             this.Load += new System.EventHandler(this.SupplierForm_Load);
             this.panelSInsert.ResumeLayout(false);
             this.panelSInsert.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSupplier)).EndInit();
             this.panelSUpdate.ResumeLayout(false);
             this.panelSUpdate.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,5 +440,8 @@
         private System.Windows.Forms.Label labelUSId;
         private System.Windows.Forms.Button buttonSUpdateSelected;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BackToDashboard;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

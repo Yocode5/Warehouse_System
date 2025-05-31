@@ -14,10 +14,12 @@ namespace Warehouse_System.Forms
 {
     public partial class ProductRestockForm : Form
     {
+        private string source;
         private ProductRestockDA restockRepo = new ProductRestockDA();
-        public ProductRestockForm()
+        public ProductRestockForm(string source)
         {
             InitializeComponent();
+            this.source = source;
         }
 
         private void ProductRestockForm_Load(object sender, EventArgs e)
@@ -90,6 +92,24 @@ namespace Warehouse_System.Forms
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
             dateTimePicker1.Value = DateTime.Now;
+        }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            if (source == "manager")
+            {
+                this.Hide();
+                new WarehouseManagerUI().ShowDialog();
+                this.Close();
+            }
+
+            else if (source == "staff")
+            {
+                this.Hide();
+                new WarehouseStaffUI().ShowDialog();
+                this.Close();
+            }
+            this.Close();
         }
     }
 }

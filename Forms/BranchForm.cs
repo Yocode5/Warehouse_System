@@ -88,5 +88,12 @@ namespace Warehouse_System.Forms
                 MessageBox.Show("Please select a row to delete");
             }
         }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new AdminUI().ShowDialog();
+            this.Close();
+        }
     }
 }

@@ -170,5 +170,12 @@ namespace Warehouse_System
             MessageBox.Show("Product succssfully deleted.");
             load_Products();
         }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new WarehouseManagerUI().ShowDialog();
+            this.Close();
+        }
     }
 }

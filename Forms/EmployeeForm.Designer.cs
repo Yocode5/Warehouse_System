@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeForm));
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonEUpdateSelected = new System.Windows.Forms.Button();
             this.panelEUpdate = new System.Windows.Forms.Panel();
@@ -63,6 +64,8 @@
             this.labelEPosition = new System.Windows.Forms.Label();
             this.labelEFName = new System.Windows.Forms.Label();
             this.labelEId = new System.Windows.Forms.Label();
+            this.BackToDashboard = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelEUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
             this.panelEInsert.SuspendLayout();
@@ -94,7 +97,8 @@
             // 
             // panelEUpdate
             // 
-            this.panelEUpdate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEUpdate.BackColor = System.Drawing.Color.LightBlue;
+            this.panelEUpdate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelEUpdate.Controls.Add(this.textBoxUEId);
             this.panelEUpdate.Controls.Add(this.comboBoxUEPosition);
             this.panelEUpdate.Controls.Add(this.textBoxUEPw);
@@ -109,9 +113,9 @@
             this.panelEUpdate.Controls.Add(this.labelUEPosition);
             this.panelEUpdate.Controls.Add(this.labelUEFName);
             this.panelEUpdate.Controls.Add(this.buttonEUpdate);
-            this.panelEUpdate.Location = new System.Drawing.Point(72, 505);
+            this.panelEUpdate.Location = new System.Drawing.Point(72, 491);
             this.panelEUpdate.Name = "panelEUpdate";
-            this.panelEUpdate.Size = new System.Drawing.Size(570, 337);
+            this.panelEUpdate.Size = new System.Drawing.Size(570, 326);
             this.panelEUpdate.TabIndex = 22;
             // 
             // textBoxUEId
@@ -230,7 +234,7 @@
             this.buttonEUpdate.BackColor = System.Drawing.Color.Teal;
             this.buttonEUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEUpdate.ForeColor = System.Drawing.Color.White;
-            this.buttonEUpdate.Location = new System.Drawing.Point(146, 277);
+            this.buttonEUpdate.Location = new System.Drawing.Point(146, 261);
             this.buttonEUpdate.Name = "buttonEUpdate";
             this.buttonEUpdate.Size = new System.Drawing.Size(251, 43);
             this.buttonEUpdate.TabIndex = 10;
@@ -266,7 +270,8 @@
             // 
             // panelEInsert
             // 
-            this.panelEInsert.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEInsert.BackColor = System.Drawing.Color.LightBlue;
+            this.panelEInsert.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelEInsert.Controls.Add(this.comboBoxEPosition);
             this.panelEInsert.Controls.Add(this.textBoxEPw);
             this.panelEInsert.Controls.Add(this.textBoxEUsername);
@@ -420,20 +425,44 @@
             this.labelEId.TabIndex = 0;
             this.labelEId.Text = "Employee ID:";
             // 
+            // BackToDashboard
+            // 
+            this.BackToDashboard.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.BackToDashboard.ForeColor = System.Drawing.Color.White;
+            this.BackToDashboard.Location = new System.Drawing.Point(36, 11);
+            this.BackToDashboard.Name = "BackToDashboard";
+            this.BackToDashboard.Size = new System.Drawing.Size(175, 48);
+            this.BackToDashboard.TabIndex = 25;
+            this.BackToDashboard.Text = "Back To Dashboard";
+            this.BackToDashboard.UseVisualStyleBackColor = false;
+            this.BackToDashboard.Click += new System.EventHandler(this.BackToDashboard_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(36, 65);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1477, 764);
+            this.panel1.TabIndex = 26;
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(1542, 856);
+            this.Controls.Add(this.BackToDashboard);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.buttonEUpdateSelected);
             this.Controls.Add(this.panelEUpdate);
             this.Controls.Add(this.buttonEDelete);
             this.Controls.Add(this.dataGridViewEmployee);
             this.Controls.Add(this.panelEInsert);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EmployeeForm";
-            this.Text = "EmployeeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Employee Managment - Stock Infinite Warehouse";
             this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.panelEUpdate.ResumeLayout(false);
             this.panelEUpdate.PerformLayout();
@@ -482,5 +511,7 @@
         private System.Windows.Forms.Label labelEPosition;
         private System.Windows.Forms.Label labelEFName;
         private System.Windows.Forms.Label labelEId;
+        private System.Windows.Forms.Button BackToDashboard;
+        private System.Windows.Forms.Panel panel1;
     }
 }

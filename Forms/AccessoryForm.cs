@@ -98,6 +98,13 @@ namespace Warehouse_System
                 MessageBox.Show("Delete error: " + ex.Message);
             }
         }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new WarehouseManagerUI().ShowDialog();
+            this.Close();
+        }
     }
 }
 
