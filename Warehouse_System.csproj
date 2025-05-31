@@ -69,10 +69,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminUI.cs">
+    <Compile Include="Forms\AdminUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminUI.Designer.cs">
+    <Compile Include="Forms\AdminUI.Designer.cs">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\AccessoryDA.cs" />
@@ -142,19 +142,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WarehouseManagerUI.cs">
+    <Compile Include="Forms\WarehouseManagerUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarehouseManagerUI.Designer.cs">
+    <Compile Include="Forms\WarehouseManagerUI.Designer.cs">
       <DependentUpon>WarehouseManagerUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarehouseStaffUI.cs">
+    <Compile Include="Forms\WarehouseStaffUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarehouseStaffUI.Designer.cs">
+    <Compile Include="Forms\WarehouseStaffUI.Designer.cs">
       <DependentUpon>WarehouseStaffUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminUI.resx">
+    <EmbeddedResource Include="Forms\AdminUI.resx">
       <DependentUpon>AdminUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BranchForm.resx">
@@ -191,10 +191,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="WarehouseManagerUI.resx">
+    <EmbeddedResource Include="Forms\WarehouseManagerUI.resx">
       <DependentUpon>WarehouseManagerUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WarehouseStaffUI.resx">
+    <EmbeddedResource Include="Forms\WarehouseStaffUI.resx">
       <DependentUpon>WarehouseStaffUI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

@@ -181,5 +181,12 @@ namespace Warehouse_System.Forms
                 MessageBox.Show("Unable to delete the record. Error: " + ex.Message);
             }
         }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new AdminUI().ShowDialog();
+            this.Close();
+        }
     }
 }

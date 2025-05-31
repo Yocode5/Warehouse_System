@@ -16,13 +16,15 @@ namespace Warehouse_System
     public partial class DispatchForm: Form
     {
         private readonly DispatchDA dispatchDA;
+        private string source;
 
-        public DispatchForm()
+        public DispatchForm(string source)
         {
             InitializeComponent();
             dispatchDA = new DispatchDA();
             LoadBranches();
             LoadProducts();
+            this.source = source;
         }
 
         //Load the Brnach information using the DA files
@@ -106,6 +108,24 @@ namespace Warehouse_System
             {
                 MessageBox.Show("Error While dispatching: " + ex.Message);
             }
+        }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            if (source == "manager")
+            {
+                this.Hide();
+                new WarehouseManagerUI().ShowDialog();
+                this.Close();
+            }
+
+            else if (source == "staff")
+            {
+                this.Hide();
+                new WarehouseStaffUI().ShowDialog();
+                this.Close();
+            }
+            this.Close();
         }
     }
 }
