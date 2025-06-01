@@ -151,7 +151,6 @@
             this.SelectUnit.Name = "SelectUnit";
             this.SelectUnit.Size = new System.Drawing.Size(207, 28);
             this.SelectUnit.TabIndex = 3;
-            this.SelectUnit.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBoxPName
             // 
@@ -170,7 +169,6 @@
             this.label3.Size = new System.Drawing.Size(148, 22);
             this.label3.TabIndex = 1;
             this.label3.Text = "Select Accessory";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -184,6 +182,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(20, 18);
             this.dataGridView1.Name = "dataGridView1";
@@ -192,8 +191,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(743, 574);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel2
             // 

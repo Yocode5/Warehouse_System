@@ -19,50 +19,76 @@ namespace Warehouse_System.DataAccess
         //Retrieving data from the Branches
         public DataTable GetAllBranches()
         {
-            DataTable dt = new DataTable();
-            string query = "SELECT * FROM Branch";
-
-            using (SqlCommand cmd = new SqlCommand(query, _con))
+            try
             {
                 OpenConnection();
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dt);
+                DataTable dt = new DataTable();
+                string query = "SELECT * FROM Branch";
 
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
                 CloseConnection();
             }
-
-            return dt;
         }
 
         //DB operation to Add a branch to the table
         public void AddBranch(Branch branch)
         {
-            String query = "INSERT INTO Branch (BranchName, Location,ContactNo) VALUES(@BranchName, @Location, @ContactNo)";
-            using (SqlCommand cmd = new SqlCommand(query, _con))
+            try
             {
                 OpenConnection();
 
-                cmd.Parameters.AddWithValue("@BranchName", branch.BranchName);
-                cmd.Parameters.AddWithValue("@Location", branch.Location);
-                cmd.Parameters.AddWithValue("@ContactNo", branch.ContactNo);
-                cmd.ExecuteNonQuery();
-
+                String query = "INSERT INTO Branch (BranchName, Location,ContactNo) VALUES(@BranchName, @Location, @ContactNo)";
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    cmd.Parameters.AddWithValue("@BranchName", branch.BranchName);
+                    cmd.Parameters.AddWithValue("@Location", branch.Location);
+                    cmd.Parameters.AddWithValue("@ContactNo", branch.ContactNo);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inserting the record", ex);
+            }
+            finally
+            {
                 CloseConnection();
             }
         }
 
         public void DeleteBranch(int branchId)
         {
-           
-            string query = "DELETE FROM Branch WHERE BranchId = @BranchId";
-            using (SqlCommand cmd = new SqlCommand(query, _con))
+            try
             {
                 OpenConnection();
 
-                cmd.Parameters.AddWithValue("BranchId", branchId);
-                cmd.ExecuteNonQuery();
-
+                string query = "DELETE FROM Branch WHERE BranchId = @BranchId";
+                using (SqlCommand cmd = new SqlCommand(query, _con))
+                {
+                    cmd.Parameters.AddWithValue("BranchId", branchId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting the record", ex);
+            }
+            finally
+            {
                 CloseConnection();
             }
         }

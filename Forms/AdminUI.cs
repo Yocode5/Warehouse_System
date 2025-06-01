@@ -17,14 +17,6 @@ namespace Warehouse_System
         {
             InitializeComponent();
         }
-
-        
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void BackToLogin_Click(object sender, EventArgs e)
         {
             this.Hide();

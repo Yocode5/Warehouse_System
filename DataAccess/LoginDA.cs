@@ -15,26 +15,36 @@ namespace Warehouse_System.DataAccess
 
         public int? ValidateUser(LoginModel login)
         {
-         
-            OpenConnection();
-            string query = "SELECT PositionID FROM Employee WHERE UserName = @username AND Password = @password";
-
-
-            using (SqlCommand cmd = new SqlCommand(query, _con))
+            try
             {
-                cmd.Parameters.AddWithValue("@username", login.UserName);
-                cmd.Parameters.AddWithValue("@password", login.Password);
+                OpenConnection();
+                string query = "SELECT PositionID FROM Employee WHERE UserName = @username AND Password = @password";
 
-                Object result = cmd.ExecuteScalar();
 
-                if (result != null)
+                using (SqlCommand cmd = new SqlCommand(query, _con))
                 {
-                    return Convert.ToInt32(result);
+                    cmd.Parameters.AddWithValue("@username", login.UserName);
+                    cmd.Parameters.AddWithValue("@password", login.Password);
+
+                    Object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
-                {
-                    return null; 
-                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
             }
         }
     }

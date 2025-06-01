@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,21 +22,10 @@ namespace Warehouse_System
         public LoginForm()
         {
             InitializeComponent();
+            textBox2.PasswordChar = '●';
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
             string username = textBox1.Text.Trim();
             string password = textBox2.Text.Trim();
 
@@ -48,7 +38,7 @@ namespace Warehouse_System
             LoginModel loginModel = new LoginModel
             {
                 UserName = username,
-                Password = password
+                Password = HashPassword(password)
             }; 
 
             try
@@ -85,10 +75,14 @@ namespace Warehouse_System
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-        private void Login_Load(object sender, EventArgs e)
+        private string HashPassword(string password)
         {
-
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+            }
         }
     }
 }

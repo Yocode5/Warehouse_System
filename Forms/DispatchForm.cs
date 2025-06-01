@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Warehouse_System.DataAccess;
 using Warehouse_System.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Warehouse_System
 {
@@ -38,7 +39,7 @@ namespace Warehouse_System
             }
             catch (Exception ex) 
             {
-                MessageBox.Show("Error Loadig Brnaches: " + ex.Message);
+                MessageBox.Show("Error Loading Branches: " + ex.Message);
             }
         }
 
@@ -52,15 +53,9 @@ namespace Warehouse_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Loadig Products: " + ex.Message);
+                MessageBox.Show("Error Loading Products: " + ex.Message);
             }
         }
-
-        private void DispatchItems_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1 || string.IsNullOrWhiteSpace(textBox3.Text))
@@ -101,8 +96,10 @@ namespace Warehouse_System
                 dispatchDA.InsertDispatch(dispatch);
                 dispatchDA.UpdateStock(productId, dispatchQTY);
 
-                MessageBox.Show("Items Successfully Dispatched.");
                 textBox3.Clear();
+                comboBox1.SelectedIndex = 0;
+                comboBox2.SelectedIndex = 0;
+                MessageBox.Show("Items Successfully Dispatched.");
             }
             catch (Exception ex)
             {

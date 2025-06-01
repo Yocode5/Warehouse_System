@@ -54,7 +54,6 @@
             this.labelUSEmail = new System.Windows.Forms.Label();
             this.labelUSPhone = new System.Windows.Forms.Label();
             this.labelUSName = new System.Windows.Forms.Label();
-            this.labelUSId = new System.Windows.Forms.Label();
             this.buttonSUpdateSelected = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.BackToDashboard = new System.Windows.Forms.Button();
@@ -64,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSupplier)).BeginInit();
             this.panelSUpdate.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSInsert
@@ -202,9 +202,9 @@
             this.buttonSDelete.BackColor = System.Drawing.Color.Teal;
             this.buttonSDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonSDelete.Location = new System.Drawing.Point(1113, 467);
+            this.buttonSDelete.Location = new System.Drawing.Point(390, 21);
             this.buttonSDelete.Name = "buttonSDelete";
-            this.buttonSDelete.Size = new System.Drawing.Size(251, 52);
+            this.buttonSDelete.Size = new System.Drawing.Size(294, 52);
             this.buttonSDelete.TabIndex = 11;
             this.buttonSDelete.Text = "Delete Selected Supplier";
             this.buttonSDelete.UseVisualStyleBackColor = false;
@@ -224,7 +224,6 @@
             this.panelSUpdate.Controls.Add(this.labelUSEmail);
             this.panelSUpdate.Controls.Add(this.labelUSPhone);
             this.panelSUpdate.Controls.Add(this.labelUSName);
-            this.panelSUpdate.Controls.Add(this.labelUSId);
             this.panelSUpdate.Location = new System.Drawing.Point(109, 464);
             this.panelSUpdate.Name = "panelSUpdate";
             this.panelSUpdate.Size = new System.Drawing.Size(550, 337);
@@ -245,38 +244,39 @@
             // 
             // textBoxUSAddress
             // 
-            this.textBoxUSAddress.Location = new System.Drawing.Point(247, 172);
+            this.textBoxUSAddress.Location = new System.Drawing.Point(247, 168);
             this.textBoxUSAddress.Name = "textBoxUSAddress";
             this.textBoxUSAddress.Size = new System.Drawing.Size(284, 22);
             this.textBoxUSAddress.TabIndex = 9;
             // 
             // textBoxUSEmail
             // 
-            this.textBoxUSEmail.Location = new System.Drawing.Point(247, 138);
+            this.textBoxUSEmail.Location = new System.Drawing.Point(247, 127);
             this.textBoxUSEmail.Name = "textBoxUSEmail";
             this.textBoxUSEmail.Size = new System.Drawing.Size(284, 22);
             this.textBoxUSEmail.TabIndex = 8;
             // 
             // textBoxUSPhone
             // 
-            this.textBoxUSPhone.Location = new System.Drawing.Point(247, 100);
+            this.textBoxUSPhone.Location = new System.Drawing.Point(247, 88);
             this.textBoxUSPhone.Name = "textBoxUSPhone";
             this.textBoxUSPhone.Size = new System.Drawing.Size(205, 22);
             this.textBoxUSPhone.TabIndex = 7;
             // 
             // textBoxUSName
             // 
-            this.textBoxUSName.Location = new System.Drawing.Point(247, 61);
+            this.textBoxUSName.Location = new System.Drawing.Point(247, 45);
             this.textBoxUSName.Name = "textBoxUSName";
             this.textBoxUSName.Size = new System.Drawing.Size(284, 22);
             this.textBoxUSName.TabIndex = 6;
             // 
             // textBoxUSId
             // 
-            this.textBoxUSId.Location = new System.Drawing.Point(247, 24);
+            this.textBoxUSId.Location = new System.Drawing.Point(247, 3);
             this.textBoxUSId.Name = "textBoxUSId";
             this.textBoxUSId.Size = new System.Drawing.Size(150, 22);
             this.textBoxUSId.TabIndex = 5;
+            this.textBoxUSId.Visible = false;
             // 
             // labelUSAddress
             // 
@@ -292,7 +292,7 @@
             // 
             this.labelUSEmail.AutoSize = true;
             this.labelUSEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSEmail.Location = new System.Drawing.Point(29, 135);
+            this.labelUSEmail.Location = new System.Drawing.Point(29, 127);
             this.labelUSEmail.Name = "labelUSEmail";
             this.labelUSEmail.Size = new System.Drawing.Size(158, 25);
             this.labelUSEmail.TabIndex = 3;
@@ -302,7 +302,7 @@
             // 
             this.labelUSPhone.AutoSize = true;
             this.labelUSPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSPhone.Location = new System.Drawing.Point(29, 100);
+            this.labelUSPhone.Location = new System.Drawing.Point(29, 84);
             this.labelUSPhone.Name = "labelUSPhone";
             this.labelUSPhone.Size = new System.Drawing.Size(167, 25);
             this.labelUSPhone.TabIndex = 2;
@@ -312,30 +312,20 @@
             // 
             this.labelUSName.AutoSize = true;
             this.labelUSName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSName.Location = new System.Drawing.Point(29, 61);
+            this.labelUSName.Location = new System.Drawing.Point(29, 45);
             this.labelUSName.Name = "labelUSName";
             this.labelUSName.Size = new System.Drawing.Size(161, 25);
             this.labelUSName.TabIndex = 1;
             this.labelUSName.Text = "Supplier Name:";
-            // 
-            // labelUSId
-            // 
-            this.labelUSId.AutoSize = true;
-            this.labelUSId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSId.Location = new System.Drawing.Point(29, 24);
-            this.labelUSId.Name = "labelUSId";
-            this.labelUSId.Size = new System.Drawing.Size(126, 25);
-            this.labelUSId.TabIndex = 0;
-            this.labelUSId.Text = "Supplier ID:";
             // 
             // buttonSUpdateSelected
             // 
             this.buttonSUpdateSelected.BackColor = System.Drawing.Color.Teal;
             this.buttonSUpdateSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSUpdateSelected.ForeColor = System.Drawing.Color.White;
-            this.buttonSUpdateSelected.Location = new System.Drawing.Point(760, 467);
+            this.buttonSUpdateSelected.Location = new System.Drawing.Point(39, 21);
             this.buttonSUpdateSelected.Name = "buttonSUpdateSelected";
-            this.buttonSUpdateSelected.Size = new System.Drawing.Size(269, 52);
+            this.buttonSUpdateSelected.Size = new System.Drawing.Size(303, 52);
             this.buttonSUpdateSelected.TabIndex = 12;
             this.buttonSUpdateSelected.Text = "Update Selected Supplier";
             this.buttonSUpdateSelected.UseVisualStyleBackColor = false;
@@ -344,12 +334,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(620, 17);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(631, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 36);
+            this.label1.Size = new System.Drawing.Size(151, 32);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Manage Suppliers ";
+            this.label1.Text = "Suppliers ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // BackToDashboard
@@ -375,6 +365,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonSUpdateSelected);
+            this.panel2.Controls.Add(this.buttonSDelete);
             this.panel2.Location = new System.Drawing.Point(655, 364);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(727, 101);
@@ -388,9 +380,7 @@
             this.ClientSize = new System.Drawing.Size(1542, 856);
             this.Controls.Add(this.BackToDashboard);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonSUpdateSelected);
             this.Controls.Add(this.panelSUpdate);
-            this.Controls.Add(this.buttonSDelete);
             this.Controls.Add(this.dataGridViewSupplier);
             this.Controls.Add(this.panelSInsert);
             this.Controls.Add(this.panel1);
@@ -405,6 +395,7 @@
             this.panelSUpdate.ResumeLayout(false);
             this.panelSUpdate.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,7 +428,6 @@
         private System.Windows.Forms.Label labelUSEmail;
         private System.Windows.Forms.Label labelUSPhone;
         private System.Windows.Forms.Label labelUSName;
-        private System.Windows.Forms.Label labelUSId;
         private System.Windows.Forms.Button buttonSUpdateSelected;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BackToDashboard;

@@ -36,7 +36,7 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error occured while inserting the records:{ex.Message}");
+                throw new Exception("Error inserting the record", ex);
             }
             finally
             {
@@ -50,7 +50,7 @@ namespace Warehouse_System.DataAccess
             {
                 OpenConnection();
 
-                string sqlQuery = $"UPDATE Employee SET PositionId=@positionId, FirstName=@firstName, LastName=@lastName, Email=@email, UserName=@username, Password=@password WHERE EmployeeId=@id";
+                string sqlQuery = $"UPDATE Employee SET PositionId=@positionId, FirstName=@firstName, LastName=@lastName, Email=@email, UserName=@username, Password=@pw WHERE EmployeeId=@id";
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, _con))
                 {
                     cmd.Parameters.AddWithValue("@id", employee.EmployeeId);
@@ -59,21 +59,20 @@ namespace Warehouse_System.DataAccess
                     cmd.Parameters.AddWithValue("@lastName", employee.LastName);
                     cmd.Parameters.AddWithValue("@email", employee.Email);
                     cmd.Parameters.AddWithValue("@username", employee.UserName);
-                    cmd.Parameters.AddWithValue("@password", employee.Password);
+                    cmd.Parameters.AddWithValue("@pw", employee.Password);
 
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error occured while updating the records:{ex.Message}");
+                throw new Exception("Error updating the record", ex);
             }
             finally
             {
                 CloseConnection();
             }
         }
-
         public void DeleteEmployee(int EmployeeId)
         {
             try
@@ -88,7 +87,7 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error occured while deleting the records:{ex.Message}");
+                throw new Exception("Error deleting the record", ex);
             }
             finally
             {
@@ -108,13 +107,11 @@ namespace Warehouse_System.DataAccess
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                CloseConnection();
                 return dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error occured while retrieving the records:{ex.Message}");
-                return null;
+                throw new Exception("Error retrieving the record", ex);
             }
             finally
             {
@@ -138,8 +135,40 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading positions: " + ex.Message);
-                return null;
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public string GetPasswordByEmployeeId(int EmpId) 
+        {
+            try
+            {
+                OpenConnection();
+
+                string sqlQuery = "SELECT Password FROM Employee WHERE EmployeeId=@empId";
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, _con))
+                {
+                    cmd.Parameters.AddWithValue("@empId", EmpId);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        return result.ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
             }
             finally
             {
@@ -148,3 +177,4 @@ namespace Warehouse_System.DataAccess
         }
     }
 }
+

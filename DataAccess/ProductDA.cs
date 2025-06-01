@@ -16,35 +16,59 @@ namespace Warehouse_System.DataAccess
         public ProductDA() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Warehouse_DB.mdf;Integrated Security=True") { }
 
         public void AddProduct(Product product) 
-        {  
-            OpenConnection();
+        {
+            try
+            {
+                OpenConnection();
 
-            string query = "INSERT INTO Products (ProductName, AccessoryId, SupplierId, Product_Quantity) VALUES (@name, @accessoryId, @supplierId, @quantity)";
-            SqlCommand cmd = new SqlCommand(query, _con);
-            cmd.Parameters.AddWithValue("@name", product.ProductName);
-            cmd.Parameters.AddWithValue("@accessoryId", product.AccessoryId);
-            cmd.Parameters.AddWithValue("@supplierId", product.SupplierId);
-            cmd.Parameters.AddWithValue("@quantity", product.ProductQuantity);
+                string query = "INSERT INTO Products (ProductName, AccessoryId, SupplierId, Product_Quantity) VALUES (@name, @accessoryId, @supplierId, @quantity)";
+                SqlCommand cmd = new SqlCommand(query, _con);
+                cmd.Parameters.AddWithValue("@name", product.ProductName);
+                cmd.Parameters.AddWithValue("@accessoryId", product.AccessoryId);
+                cmd.Parameters.AddWithValue("@supplierId", product.SupplierId);
+                cmd.Parameters.AddWithValue("@quantity", product.ProductQuantity);
 
-            cmd.ExecuteNonQuery();
-            CloseConnection();  
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inserting the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public void DeleteProduct(int productId)
         {
-            OpenConnection();
+            try
+            {
+                OpenConnection();
 
-            string query = "DELETE FROM Products WHERE ProductId = @id";
-            SqlCommand cmd = new SqlCommand(query, _con);
-            cmd.Parameters.AddWithValue("@id", productId);
+                string query = "DELETE FROM Products WHERE ProductId = @id";
+                SqlCommand cmd = new SqlCommand(query, _con);
+                cmd.Parameters.AddWithValue("@id", productId);
 
-            cmd.ExecuteNonQuery();
-            CloseConnection();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public DataTable GetAllProducts()
         {
-            string query = @"
+            try
+            {
+                OpenConnection();
+
+                string query = @"
                         SELECT 
                             p.ProductId,
                             p.ProductName,
@@ -58,28 +82,63 @@ namespace Warehouse_System.DataAccess
                         JOIN
                             Supplier s ON p.SupplierId = s.SupplierId";
 
-            SqlDataAdapter da = new SqlDataAdapter(query, _con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+                SqlDataAdapter da = new SqlDataAdapter(query, _con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public DataTable GetAccessories()
         {
-            string query = "SELECT AccessoryId, AccessoryName FROM Accessories";
-            SqlDataAdapter da = new SqlDataAdapter(query, _con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            try
+            {
+                OpenConnection();
+
+                string query = "SELECT AccessoryId, AccessoryName FROM Accessories";
+                SqlDataAdapter da = new SqlDataAdapter(query, _con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public DataTable GetSuppliers()
         {
-            string query = @"SELECT SupplierId, SupplierName FROM Supplier";
-            SqlDataAdapter da = new SqlDataAdapter(query, _con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            try
+            {
+                OpenConnection();
+
+                string query = @"SELECT SupplierId, SupplierName FROM Supplier";
+                SqlDataAdapter da = new SqlDataAdapter(query, _con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
     }
 }
