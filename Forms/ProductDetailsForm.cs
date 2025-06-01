@@ -94,5 +94,12 @@ namespace Warehouse_System.Forms
                 MessageBox.Show($"Error loading the products: {ex.Message}");
             }
         }
+
+        private void BackToDashboard_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new WarehouseStaffUI().ShowDialog();
+            this.Close();
+        }
     }
 }

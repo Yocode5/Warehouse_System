@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BackToDashboard = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -66,12 +67,25 @@
             this.dataGridView1.Size = new System.Drawing.Size(743, 574);
             this.dataGridView1.TabIndex = 3;
             // 
+            // BackToDashboard
+            // 
+            this.BackToDashboard.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.BackToDashboard.ForeColor = System.Drawing.Color.White;
+            this.BackToDashboard.Location = new System.Drawing.Point(49, 12);
+            this.BackToDashboard.Name = "BackToDashboard";
+            this.BackToDashboard.Size = new System.Drawing.Size(175, 48);
+            this.BackToDashboard.TabIndex = 26;
+            this.BackToDashboard.Text = "Back To Dashboard";
+            this.BackToDashboard.UseVisualStyleBackColor = false;
+            this.BackToDashboard.Click += new System.EventHandler(this.BackToDashboard_Click);
+            // 
             // ProductDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(1542, 856);
+            this.Controls.Add(this.BackToDashboard);
             this.Controls.Add(this.panel1);
             this.Name = "ProductDetailsForm";
             this.Text = "ProductDetails";
@@ -88,5 +102,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BackToDashboard;
     }
 }
