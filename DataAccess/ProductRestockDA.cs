@@ -33,8 +33,7 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading products: " + ex.Message);
-                return null;
+                throw new Exception("Error loading products", ex);
             }
             finally
             {
@@ -58,8 +57,7 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading suppliers: " + ex.Message);
-                return null;
+                throw new Exception("Error loading suppliers", ex);
             }
             finally
             {
@@ -83,8 +81,7 @@ namespace Warehouse_System.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading accessories: " + ex.Message);
-                return null;
+                throw new Exception("Error loading accessories", ex);
             }
             finally
             {
@@ -127,12 +124,11 @@ namespace Warehouse_System.DataAccess
                 }
 
                 transaction.Commit();
-                MessageBox.Show("Items Successfully Restocked");
             }
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                MessageBox.Show("Restock process failed: " + ex.Message);
+                throw new Exception("Restock process failed", ex);
             }
             finally
             {

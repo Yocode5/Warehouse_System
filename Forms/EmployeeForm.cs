@@ -11,12 +11,13 @@ using System.Windows.Forms.VisualStyles;
 using Warehouse_System.DataAccess;
 using Warehouse_System.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Security.Cryptography;
 
 namespace Warehouse_System.Forms
 {
     public partial class EmployeeForm : Form
     {
-        private EmployeeDA _employeeDA = new EmployeeDA();
+        private EmployeeDA _employeeDA;
         public EmployeeForm()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace Warehouse_System.Forms
             LoadEmployee();
             LoadComboBoxes();
             panelEUpdate.Visible = false;
+            textBoxUEPw.Visible = false;
         }
 
         private void LoadComboBoxes()
@@ -57,6 +59,18 @@ namespace Warehouse_System.Forms
 
         private void buttonEInsert_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxEId.Text) ||
+            string.IsNullOrWhiteSpace(textBoxEFName.Text) ||
+            string.IsNullOrWhiteSpace(textBoxELName.Text) ||
+            (comboBoxEPosition.SelectedIndex == -1) ||
+            string.IsNullOrWhiteSpace(textBoxEEmail.Text) ||
+            string.IsNullOrWhiteSpace(textBoxEUsername.Text) ||
+            string.IsNullOrWhiteSpace(textBoxEPw.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
             try
             {
                 Employee employee = new Employee
@@ -67,7 +81,7 @@ namespace Warehouse_System.Forms
                     PositionId = Convert.ToInt32(comboBoxEPosition.SelectedValue),
                     Email = textBoxEEmail.Text,
                     UserName = textBoxEUsername.Text,
-                    Password = textBoxEPw.Text
+                    Password = HashPassword(textBoxEPw.Text)
                 };
 
                 _employeeDA.AddEmployee(employee);
@@ -112,7 +126,10 @@ namespace Warehouse_System.Forms
                 comboBoxUEPosition.SelectedValue = row.Cells["PositionId"].Value.ToString();
                 textBoxUEEmail.Text = row.Cells["Email"].Value.ToString();
                 textBoxUEUsername.Text = row.Cells["UserName"].Value.ToString();
-                textBoxUEPw.Text = row.Cells["Password"].Value.ToString();
+
+                textBoxUEPw.Clear();
+                textBoxUEPw.Visible = false;
+                checkBoxChangePw.Checked = false;
             }
 
             catch (Exception ex)
@@ -123,6 +140,16 @@ namespace Warehouse_System.Forms
 
         private void buttonEUpdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxUEFName.Text) ||
+            string.IsNullOrWhiteSpace(textBoxUELName.Text) ||
+            (comboBoxUEPosition.SelectedIndex == -1) ||
+            string.IsNullOrWhiteSpace(textBoxUEEmail.Text) ||
+            string.IsNullOrWhiteSpace(textBoxUEUsername.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
             try
             {
                 Employee updatedEmployee = new Employee
@@ -132,9 +159,22 @@ namespace Warehouse_System.Forms
                     LastName = textBoxUELName.Text,
                     PositionId = Convert.ToInt32(comboBoxUEPosition.SelectedValue),
                     Email = textBoxUEEmail.Text,
-                    UserName = textBoxUEUsername.Text,
-                    Password = textBoxUEPw.Text,
+                    UserName = textBoxUEUsername.Text
                 };
+
+                if (checkBoxChangePw.Checked==true)
+                {
+                    updatedEmployee.Password = HashPassword(textBoxUEPw.Text);
+                    if(string.IsNullOrWhiteSpace(textBoxUEPw.Text))
+                    {
+                        MessageBox.Show("Please fill all fields.");
+                        return;
+                    }
+                }
+                else
+                {
+                    updatedEmployee.Password = _employeeDA.GetPasswordByEmployeeId(updatedEmployee.EmployeeId);
+                }
 
                 _employeeDA.UpdateEmployee(updatedEmployee);
                 LoadEmployee();
@@ -156,7 +196,7 @@ namespace Warehouse_System.Forms
                 {
                     int id = Convert.ToInt32(dataGridViewEmployee.SelectedRows[0].Cells["EmployeeId"].Value);
 
-                    DialogResult result = MessageBox.Show("Are you sure you want to delete selected supplier?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete selected employee?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         try
@@ -187,6 +227,21 @@ namespace Warehouse_System.Forms
             this.Hide();
             new AdminUI().ShowDialog();
             this.Close();
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hash).Replace("-", "").ToLower();
+            }
+        }
+
+        private void checkBoxChangePw_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxUEPw.Visible = checkBoxChangePw.Checked;
         }
     }
 }

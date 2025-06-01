@@ -17,63 +17,101 @@ namespace Warehouse_System.DataAccess
 
         public void AddSupplier(Supplier supplier)
         {
-            OpenConnection();
+            try
+            {
+                OpenConnection();
 
-            string sqlQuery = $"Insert into Supplier (SupplierId, SupplierName, SupplierPhone, SupplierEmail, SupplierAddress) VALUES (@id, @name, @phone, @email, @address)";
-            SqlCommand cmd = new SqlCommand(sqlQuery, _con);
-            cmd.Parameters.AddWithValue("@id", supplier.SupplierId);
-            cmd.Parameters.AddWithValue("@name", supplier.SupplierName);
-            cmd.Parameters.AddWithValue("@phone", supplier.SupplierPhone);
-            cmd.Parameters.AddWithValue("@email", supplier.SupplierEmail);
-            cmd.Parameters.AddWithValue("@address", supplier.SupplierAddress);
+                string sqlQuery = $"Insert into Supplier (SupplierId, SupplierName, SupplierPhone, SupplierEmail, SupplierAddress) VALUES (@id, @name, @phone, @email, @address)";
+                SqlCommand cmd = new SqlCommand(sqlQuery, _con);
+                cmd.Parameters.AddWithValue("@id", supplier.SupplierId);
+                cmd.Parameters.AddWithValue("@name", supplier.SupplierName);
+                cmd.Parameters.AddWithValue("@phone", supplier.SupplierPhone);
+                cmd.Parameters.AddWithValue("@email", supplier.SupplierEmail);
+                cmd.Parameters.AddWithValue("@address", supplier.SupplierAddress);
 
-            cmd.ExecuteNonQuery();
-
-            CloseConnection();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inserting the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public void UpdateSupplier(Supplier supplier)
         {
-            OpenConnection();
+            try
+            {
+                OpenConnection();
 
-            string sqlQuery = $"UPDATE Supplier SET SupplierName=@name, SupplierPhone=@phone, SupplierEmail=@email, SupplierAddress=@address WHERE SupplierId=@id";
-            SqlCommand cmd = new SqlCommand(sqlQuery, _con);
-            cmd.Parameters.AddWithValue("@id", supplier.SupplierId);
-            cmd.Parameters.AddWithValue("@name", supplier.SupplierName);
-            cmd.Parameters.AddWithValue("@phone", supplier.SupplierPhone);
-            cmd.Parameters.AddWithValue("@email", supplier.SupplierEmail);
-            cmd.Parameters.AddWithValue("@address", supplier.SupplierAddress);
+                string sqlQuery = $"UPDATE Supplier SET SupplierName=@name, SupplierPhone=@phone, SupplierEmail=@email, SupplierAddress=@address WHERE SupplierId=@id";
+                SqlCommand cmd = new SqlCommand(sqlQuery, _con);
+                cmd.Parameters.AddWithValue("@id", supplier.SupplierId);
+                cmd.Parameters.AddWithValue("@name", supplier.SupplierName);
+                cmd.Parameters.AddWithValue("@phone", supplier.SupplierPhone);
+                cmd.Parameters.AddWithValue("@email", supplier.SupplierEmail);
+                cmd.Parameters.AddWithValue("@address", supplier.SupplierAddress);
 
-            cmd.ExecuteNonQuery();
-
-            CloseConnection();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public void DeleteSupplier(int supplierId)
         {
-            OpenConnection();
+            try
+            {
+                OpenConnection();
 
-            string sqlQuery = $"DELETE FROM Supplier WHERE SupplierId = @id";
-            SqlCommand cmd = new SqlCommand(sqlQuery, _con);
-            cmd.Parameters.AddWithValue("@id", supplierId);
+                string sqlQuery = $"DELETE FROM Supplier WHERE SupplierId = @id";
+                SqlCommand cmd = new SqlCommand(sqlQuery, _con);
+                cmd.Parameters.AddWithValue("@id", supplierId);
 
-            cmd.ExecuteNonQuery();
-
-            CloseConnection();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         public DataTable GetSupplier()
         {
-            OpenConnection();
+            try
+            {
+                OpenConnection();
 
-            string sqlQuery = "SELECT * FROM Supplier";
-            SqlCommand cmd = new SqlCommand(sqlQuery, _con);
+                string sqlQuery = "SELECT * FROM Supplier";
+                SqlCommand cmd = new SqlCommand(sqlQuery, _con);
 
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            CloseConnection();
-            return dt;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                CloseConnection();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error retrieving the record", ex);
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
     }
 }

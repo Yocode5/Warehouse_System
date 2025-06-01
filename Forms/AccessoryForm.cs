@@ -37,7 +37,7 @@ namespace Warehouse_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Database connection error {ex.Message}");
+                MessageBox.Show($"Database connection error: {ex.Message}");
             }
         }
 

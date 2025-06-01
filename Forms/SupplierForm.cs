@@ -45,6 +45,16 @@ namespace Warehouse_System
 
         private void buttonSInsert_Click_1(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxSId.Text) ||
+                string.IsNullOrWhiteSpace(textBoxSName.Text) ||
+                string.IsNullOrWhiteSpace(textBoxSPhone.Text) ||
+                string.IsNullOrWhiteSpace(textBoxSEmail.Text) ||
+                string.IsNullOrWhiteSpace(textBoxSAddress.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
             try
             {
                 Supplier supplier = new Supplier
@@ -104,6 +114,15 @@ namespace Warehouse_System
 
         private void buttonSUpdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxUSName.Text) ||
+                string.IsNullOrWhiteSpace(textBoxUSPhone.Text) ||
+                string.IsNullOrWhiteSpace(textBoxUSEmail.Text) ||
+                string.IsNullOrWhiteSpace(textBoxUSAddress.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
             try
             {
                 Supplier updatedSupplier = new Supplier
@@ -120,7 +139,6 @@ namespace Warehouse_System
                 panelSUpdate.Visible = false;
                 MessageBox.Show("Record Updated Successfully!");
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Unable to update the record. Error: " + ex.Message);

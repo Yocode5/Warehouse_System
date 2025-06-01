@@ -32,6 +32,7 @@
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonEUpdateSelected = new System.Windows.Forms.Button();
             this.panelEUpdate = new System.Windows.Forms.Panel();
+            this.checkBoxChangePw = new System.Windows.Forms.CheckBox();
             this.textBoxUEId = new System.Windows.Forms.TextBox();
             this.comboBoxUEPosition = new System.Windows.Forms.ComboBox();
             this.textBoxUEPw = new System.Windows.Forms.TextBox();
@@ -74,12 +75,12 @@
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(659, 14);
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(639, 14);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(292, 36);
+            this.labelTitle.Size = new System.Drawing.Size(164, 32);
             this.labelTitle.TabIndex = 21;
-            this.labelTitle.Text = "Manage Employees";
+            this.labelTitle.Text = "Employees";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // buttonEUpdateSelected
@@ -89,9 +90,9 @@
             this.buttonEUpdateSelected.ForeColor = System.Drawing.Color.White;
             this.buttonEUpdateSelected.Location = new System.Drawing.Point(779, 465);
             this.buttonEUpdateSelected.Name = "buttonEUpdateSelected";
-            this.buttonEUpdateSelected.Size = new System.Drawing.Size(284, 43);
+            this.buttonEUpdateSelected.Size = new System.Drawing.Size(299, 43);
             this.buttonEUpdateSelected.TabIndex = 24;
-            this.buttonEUpdateSelected.Text = "Update Selected Supplier";
+            this.buttonEUpdateSelected.Text = "Update Selected Employee";
             this.buttonEUpdateSelected.UseVisualStyleBackColor = false;
             this.buttonEUpdateSelected.Click += new System.EventHandler(this.buttonEUpdateSelected_Click);
             // 
@@ -99,6 +100,7 @@
             // 
             this.panelEUpdate.BackColor = System.Drawing.Color.LightBlue;
             this.panelEUpdate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelEUpdate.Controls.Add(this.checkBoxChangePw);
             this.panelEUpdate.Controls.Add(this.textBoxUEId);
             this.panelEUpdate.Controls.Add(this.comboBoxUEPosition);
             this.panelEUpdate.Controls.Add(this.textBoxUEPw);
@@ -118,6 +120,17 @@
             this.panelEUpdate.Size = new System.Drawing.Size(570, 326);
             this.panelEUpdate.TabIndex = 22;
             // 
+            // checkBoxChangePw
+            // 
+            this.checkBoxChangePw.AutoSize = true;
+            this.checkBoxChangePw.Location = new System.Drawing.Point(247, 214);
+            this.checkBoxChangePw.Name = "checkBoxChangePw";
+            this.checkBoxChangePw.Size = new System.Drawing.Size(76, 20);
+            this.checkBoxChangePw.TabIndex = 27;
+            this.checkBoxChangePw.Text = "Change";
+            this.checkBoxChangePw.UseVisualStyleBackColor = true;
+            this.checkBoxChangePw.CheckedChanged += new System.EventHandler(this.checkBoxChangePw_CheckedChanged);
+            // 
             // textBoxUEId
             // 
             this.textBoxUEId.Location = new System.Drawing.Point(247, 3);
@@ -136,7 +149,7 @@
             // 
             // textBoxUEPw
             // 
-            this.textBoxUEPw.Location = new System.Drawing.Point(247, 212);
+            this.textBoxUEPw.Location = new System.Drawing.Point(348, 211);
             this.textBoxUEPw.Name = "textBoxUEPw";
             this.textBoxUEPw.Size = new System.Drawing.Size(205, 22);
             this.textBoxUEPw.TabIndex = 26;
@@ -238,7 +251,7 @@
             this.buttonEUpdate.Name = "buttonEUpdate";
             this.buttonEUpdate.Size = new System.Drawing.Size(251, 43);
             this.buttonEUpdate.TabIndex = 10;
-            this.buttonEUpdate.Text = "Update Supplier";
+            this.buttonEUpdate.Text = "Update Employee";
             this.buttonEUpdate.UseVisualStyleBackColor = false;
             this.buttonEUpdate.Click += new System.EventHandler(this.buttonEUpdate_Click);
             // 
@@ -249,9 +262,9 @@
             this.buttonEDelete.ForeColor = System.Drawing.Color.White;
             this.buttonEDelete.Location = new System.Drawing.Point(1132, 465);
             this.buttonEDelete.Name = "buttonEDelete";
-            this.buttonEDelete.Size = new System.Drawing.Size(266, 43);
+            this.buttonEDelete.Size = new System.Drawing.Size(301, 43);
             this.buttonEDelete.TabIndex = 23;
-            this.buttonEDelete.Text = "Delete Selected Supplier";
+            this.buttonEDelete.Text = "Delete Selected Employee";
             this.buttonEDelete.UseVisualStyleBackColor = false;
             this.buttonEDelete.Click += new System.EventHandler(this.buttonEDelete_Click);
             // 
@@ -513,5 +526,6 @@
         private System.Windows.Forms.Label labelEId;
         private System.Windows.Forms.Button BackToDashboard;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkBoxChangePw;
     }
 }

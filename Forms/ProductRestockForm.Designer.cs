@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductRestockForm));
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -45,16 +44,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BackToDashboard = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSuggestedSlot = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(711, 78);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(651, 513);
-            this.panel2.TabIndex = 5;
             // 
             // panel1
             // 
@@ -180,10 +177,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(651, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 29);
+            this.label1.Size = new System.Drawing.Size(251, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "Restock Products";
             // 
@@ -202,12 +199,59 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.panel2);
+            this.panel3.Controls.Add(this.panel1);
             this.panel3.Location = new System.Drawing.Point(41, 93);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1460, 678);
             this.panel3.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightBlue;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.txtSuggestedSlot);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Location = new System.Drawing.Point(752, 78);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(593, 503);
+            this.panel2.TabIndex = 5;
+            // 
+            // txtSuggestedSlot
+            // 
+            this.txtSuggestedSlot.BackColor = System.Drawing.Color.LightYellow;
+            this.txtSuggestedSlot.Location = new System.Drawing.Point(39, 140);
+            this.txtSuggestedSlot.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSuggestedSlot.Name = "txtSuggestedSlot";
+            this.txtSuggestedSlot.ReadOnly = true;
+            this.txtSuggestedSlot.Size = new System.Drawing.Size(332, 22);
+            this.txtSuggestedSlot.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(34, 102);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(152, 25);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Suggested Slot:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(33, 35);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(297, 32);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Smart Slot Suggestion";
             // 
             // ProductRestockForm
             // 
@@ -226,14 +270,14 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -249,5 +293,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BackToDashboard;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox txtSuggestedSlot;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

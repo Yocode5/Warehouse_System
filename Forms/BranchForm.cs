@@ -54,12 +54,13 @@ namespace Warehouse_System.Forms
                 };
 
                 branchDA.AddBranch(newBranch);
-                MessageBox.Show("Branch Added Successfully");
                 LoadData();
 
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
+
+                MessageBox.Show("Branch Added Successfully");
             }
             catch (Exception ex)
             {
@@ -75,8 +76,8 @@ namespace Warehouse_System.Forms
                 {
                     int branchId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["BranchId"].Value);
                     branchDA.DeleteBranch(branchId);
-                    MessageBox.Show("Branch Deleted Successfully");
                     LoadData();
+                    MessageBox.Show("Branch Deleted Successfully");
                 }
                 catch(Exception ex)
                 {

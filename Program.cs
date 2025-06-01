@@ -23,6 +23,7 @@ namespace Warehouse_System
             AppDomain.CurrentDomain.SetData("DataDirectory", projectFolder);
 
             Application.Run(new LoginForm());
+            //Application.Run(new ProductDetailsForm());
         }
     }
 }

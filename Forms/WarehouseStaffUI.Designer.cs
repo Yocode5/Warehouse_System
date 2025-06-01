@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarehouseStaffUI));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonViewProducts = new System.Windows.Forms.Button();
             this.DispatchItems = new System.Windows.Forms.Button();
             this.RestockItems = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,6 +50,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.buttonViewProducts);
             this.panel1.Controls.Add(this.DispatchItems);
             this.panel1.Controls.Add(this.RestockItems);
             this.panel1.Location = new System.Drawing.Point(40, 66);
@@ -56,12 +58,25 @@
             this.panel1.Size = new System.Drawing.Size(638, 703);
             this.panel1.TabIndex = 0;
             // 
+            // buttonViewProducts
+            // 
+            this.buttonViewProducts.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonViewProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonViewProducts.ForeColor = System.Drawing.Color.White;
+            this.buttonViewProducts.Location = new System.Drawing.Point(27, 83);
+            this.buttonViewProducts.Name = "buttonViewProducts";
+            this.buttonViewProducts.Size = new System.Drawing.Size(254, 83);
+            this.buttonViewProducts.TabIndex = 4;
+            this.buttonViewProducts.Text = "View Product Details";
+            this.buttonViewProducts.UseVisualStyleBackColor = false;
+            this.buttonViewProducts.Click += new System.EventHandler(this.buttonViewProducts_Click);
+            // 
             // DispatchItems
             // 
             this.DispatchItems.BackColor = System.Drawing.Color.LightSeaGreen;
             this.DispatchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DispatchItems.ForeColor = System.Drawing.Color.White;
-            this.DispatchItems.Location = new System.Drawing.Point(27, 423);
+            this.DispatchItems.Location = new System.Drawing.Point(27, 522);
             this.DispatchItems.Name = "DispatchItems";
             this.DispatchItems.Size = new System.Drawing.Size(254, 83);
             this.DispatchItems.TabIndex = 3;
@@ -74,7 +89,7 @@
             this.RestockItems.BackColor = System.Drawing.Color.LightSeaGreen;
             this.RestockItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RestockItems.ForeColor = System.Drawing.Color.White;
-            this.RestockItems.Location = new System.Drawing.Point(27, 168);
+            this.RestockItems.Location = new System.Drawing.Point(27, 298);
             this.RestockItems.Name = "RestockItems";
             this.RestockItems.Size = new System.Drawing.Size(254, 83);
             this.RestockItems.TabIndex = 2;
@@ -98,7 +113,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(182, 582);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(392, 39);
+            this.label1.Size = new System.Drawing.Size(378, 38);
             this.label1.TabIndex = 3;
             this.label1.Text = "General Staff Dashboard";
             // 
@@ -192,5 +207,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonViewProducts;
     }
 }

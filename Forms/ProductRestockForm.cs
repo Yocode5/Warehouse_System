@@ -76,13 +76,57 @@ namespace Warehouse_System.Forms
                 // Call the data access method
                 restockRepo.RestockProduct(restock);
 
+                //smart slot suggession
+                if (comboBox3.SelectedIndex == -1 || string.IsNullOrWhiteSpace(textBox1.Text))
+                {
+                    MessageBox.Show("Please select an accessory and enter quantity.");
+                    return;
+                }
+
+                string accessoryName = comboBox3.Text.ToLower();
+                bool isValidQty = int.TryParse(textBox1.Text, out int qty);
+
+                if (!isValidQty || qty <= 0)
+                {
+                    MessageBox.Show("Quantity must be a positive number.");
+                    return;
+                }
+
+                string suggestedSlot = GetSuggestedSlot(accessoryName, qty);
+                txtSuggestedSlot.Text = suggestedSlot;
+
                 // Optional: clear form after restock
                 ClearFields();
+
+                MessageBox.Show("Items Successfully Restocked");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error during restock: " + ex.Message);
             }
+        }
+
+        private string GetSuggestedSlot(string accessoryName, int quantity)
+        {
+            if (accessoryName.Contains("monitor") || accessoryName.Contains("glass"))
+                return "Zone A - Fragile Shelf";
+
+            if (accessoryName.Contains("ram") || accessoryName.Contains("cpu") || accessoryName.Contains("ssd"))
+                return "Zone E - ESD Protected Area";
+
+            if (accessoryName.Contains("ups") || accessoryName.Contains("battery") || accessoryName.Contains("monitor") || quantity > 100)
+                return "Zone C - Bulk Storage";
+
+            if (accessoryName.Contains("cable") || accessoryName.Contains("usb") || accessoryName.Contains("stick") || accessoryName.Contains("adapter"))
+                return "Zone D - Fast Pick Bins";
+
+            if ((accessoryName.Contains("ssd") || accessoryName.Contains("ram")) && quantity > 50)
+                return "Zone F - Near Dispatch";
+
+            if (accessoryName.Contains("old") || accessoryName.Contains("outdated") || accessoryName.Contains("legacy"))
+                return "Zone G - Overflow Storage";
+
+            return "Zone D - General Shelves";
         }
 
         private void ClearFields()

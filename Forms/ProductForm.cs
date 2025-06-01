@@ -24,14 +24,6 @@ namespace Warehouse_System
             InitializeComponent();
             productDA = new ProductDA();
         }
-
-
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void productNames_Load(object sender, EventArgs e)
         {
 
@@ -106,12 +98,6 @@ namespace Warehouse_System
                     );
             }
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxPName.Text) || string.IsNullOrWhiteSpace(textBoxPName.Text))
@@ -132,30 +118,18 @@ namespace Warehouse_System
                 };
 
                 productDA.AddProduct(product);
-                MessageBox.Show("New Record Created Successfully");
                 load_Products();
+                textBoxPName.Clear();
+                SelectUnit.SelectedIndex = 0;
+                comboBoxSupplier.SelectedIndex = 0;
+                textBoxQTY.Clear();
+                MessageBox.Show("New Record Created Successfully");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Unable to Add Product: " + ex.Message);
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0 || dataGridView1.SelectedRows[0].Cells["ProductId"].Value == null)
@@ -167,8 +141,8 @@ namespace Warehouse_System
             int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ProductId"].Value);
             productDA.DeleteProduct(productId);
 
-            MessageBox.Show("Product succssfully deleted.");
             load_Products();
+            MessageBox.Show("Product succssfully deleted.");
         }
 
         private void BackToDashboard_Click(object sender, EventArgs e)

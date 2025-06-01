@@ -38,5 +38,12 @@ namespace Warehouse_System
             new LoginForm().ShowDialog();
             this.Close();
         }
+
+        private void buttonViewProducts_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new ProductDetailsForm().ShowDialog();
+            this.Close();
+        }
     }
 }
