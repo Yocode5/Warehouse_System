@@ -76,95 +76,14 @@ namespace Warehouse_System
             //Finding the starting date for the Tables 
             DateTime startDate = DateTime.Now.AddDays(-daysSince);
 
-            //Creating queries to retrieve data from the log Tables
-            string ProductsQuery = @"
-                            SELECT P.ProductId, P.ProductName, A.AccessoryName, S.SupplierName, P.Product_Quantity
-                            FROM Products P
-                            LEFT JOIN Accessories A ON P.AccessoryId = A.AccessoryId
-                            LEFT JOIN Supplier S ON P.SupplierId = S.SupplierId";
-
-            string RestockQuery = @"
-                            SELECT P.ProductName, S.SupplierName, A.AccessoryName, RM.QTY, RM.RestockDate
-                            FROM Restock_Master RM
-                            JOIN Products P ON RM.ProductId = P.ProductId
-                            JOIN Supplier S ON RM.SupplierId = S.SupplierId
-                            JOIN Accessories A ON RM.AccessoryId = A.AccessoryId
-                            WHERE RM.RestockDate >= @StartDate";
-
-            string DispatchQuery = @"
-                            SELECT P.ProductName, B.BranchName, DM.QTY, DM.DispatchDate
-                            FROM Dispatch_Master DM
-                            JOIN Products P ON DM.ProductId = P.ProductId
-                            JOIN Branch B ON DM.BranchId = B.BranchId
-                            WHERE DM.DispatchDate >= @StartDate";
-
-            //Queries created to retrieve insoghts from the records on those log tables
-            string insightsQuery = @"
-                SELECT TOP 1 P.ProductName, COUNT(*) as Count FROM Dispatch_Master DM
-                JOIN Products P ON DM.ProductId = P.ProductId
-                WHERE DM.DispatchDate >= @StartDate
-                GROUP BY P.ProductName ORDER BY Count DESC;
-
-                SELECT TOP 1 P.ProductName, COUNT(*) as Count FROM Restock_Master RM
-                JOIN Products P ON RM.ProductId = P.ProductId
-                WHERE RM.RestockDate >= @StartDate
-                GROUP BY P.ProductName ORDER BY Count DESC;
-
-                SELECT TOP 1 S.SupplierName, COUNT(*) as Count FROM Restock_Master RM
-                JOIN Supplier S ON RM.SupplierId = S.SupplierId
-                WHERE RM.RestockDate >= @StartDate
-                GROUP BY S.SupplierName ORDER BY Count DESC;";
-
             //Creating the Connection String
             string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Warehouse_DB.mdf;Integrated Security=True";
+            var report = new Models.ReportGen(conString);
 
-            //Defining Datatables
-            DataTable productsTable = new DataTable();
-            DataTable restockTable = new DataTable();
-            DataTable dispatchTable = new DataTable();
-            string topDispatched = "-", topRestocked = "-", topSupplier = "-";
-
-            //Creating a Connection object
-            using (SqlConnection con = new SqlConnection(conString))
-            {
-                //Opening the Connection
-                con.Open();
-
-                //Creating a Command Object to fetch Restock Data
-                using (SqlCommand cmd = new SqlCommand(RestockQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@StartDate", startDate);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(restockTable);
-                }
-
-                //Creating a Command Object to fetch Dispatch Data
-                using (SqlCommand cmd = new SqlCommand(DispatchQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@StartDate", startDate);
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dispatchTable);
-                }
-
-                //Creating a command Object to fetch Products Data
-                using (SqlCommand cmd = new SqlCommand(ProductsQuery, con))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(productsTable);
-                }
-
-                //Creating a Command Object to fetch Insight Data
-                using (SqlCommand cmd = new SqlCommand(insightsQuery, con))
-                {
-                    cmd.Parameters.AddWithValue("@StartDate", startDate);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read()) topDispatched = reader.GetString(0);
-                        if (reader.NextResult() && reader.Read()) topRestocked = reader.GetString(0);
-                        if (reader.NextResult() && reader.Read()) topSupplier = reader.GetString(0);
-                    }
-                }
-            }
+            DataTable restockTable = report.GetRestockReport(startDate);
+            DataTable dispatchTable = report.GetDispatchReport(startDate);
+            DataTable productsTable = report.GetProductsReport();
+            var (topDispatched, topRestocked, topSupplier) = report.GetInsights(startDate);
 
             //Generating the Pdf Report
             string fileName = $"Warehouse_Report_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
