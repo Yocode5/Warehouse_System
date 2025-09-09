@@ -20,7 +20,7 @@ namespace Warehouse_System.DataAccess
             {
                 OpenConnection();
 
-                string sqlQuery = $"Insert into Accessories (AccessoryName) VALUES (@name)"; ;
+                string sqlQuery = $"Insert into Accessories (AccessoryName) VALUES (@name)"; 
                 SqlCommand cmd = new SqlCommand(sqlQuery, _con);
                 cmd.Parameters.AddWithValue("@name", accessory.AccessoryName);
 

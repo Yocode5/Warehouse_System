@@ -115,7 +115,7 @@ namespace Warehouse_System.DataAccess
                 string updateQuery = @"UPDATE Products 
                     SET Product_Quantity = Product_Quantity + @QTY 
                     WHERE ProductId = @ProductId";
-
+                
                 using (SqlCommand updateCmd = new SqlCommand(updateQuery, _con, transaction))
                 {
                     updateCmd.Parameters.AddWithValue("@QTY", restock.Quantity);

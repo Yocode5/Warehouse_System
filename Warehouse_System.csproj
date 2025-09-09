@@ -58,6 +58,7 @@
       <HintPath>..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -225,7 +226,9 @@
   <ItemGroup>
     <None Include="Resources\WArehouse Login.png" />
     <None Include="Resources\WArehouse Login1.png" />
-    <None Include="Resources\Stock-Infinite - Logo Main 2.png" />
+    <None Include="Resources\Stock-Infinite - Logo Main 2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\pngtree-recruitment-job-for-social-media-admin-png-image_6478542.png" />
     <None Include="Resources\inventory-control-by-online-system-inventory-management-with-goods-demand-professional-worker-is-checking-goods-and-stock-supply-vector.jpg" />
     <None Include="Resources\inventory-control-by-online-system-inventory-management-with-goods-demand-professional-worker-is-checking-goods-and-stock-supply-vector.png" />
