@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 using System.Data.SqlClient;
 using Warehouse_System.Models;
 using Warehouse_System.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Warehouse_System
 {
@@ -94,36 +95,70 @@ namespace Warehouse_System
             PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
             doc.Open();
 
-            var title = new Paragraph($"Stock Infinite - Warehouse Report ({filter})", FontFactory.GetFont("Arial", BaseFont.CP1252,Font.Bold, 18));
-            title.Alignment = Element.ALIGN_CENTER;
+            //Adding the Logo to the Report
+            string logoPath = Path.Combine(Application.StartupPath, "Resources", "Stock-Infinite - Logo Main 2.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleToFit(60f, 60f);
+            logo.SetAbsolutePosition(45f, 770f);
+            doc.Add(logo);
+
+            //Adding the Title
+            var title = new Paragraph($"Stock Infinite - Warehouse Report ({filter})", FontFactory.GetFont("Arial", BaseFont.CP1252, Font.Bold, 18))
+            {
+                Alignment = Element.ALIGN_CENTER,
+                SpacingBefore = 10f,
+                SpacingAfter = 20f
+            };
             doc.Add(title);
 
             addDivider(doc);
 
-            doc.Add(new Paragraph("\n--- Summary Insights---\n"));
-            doc.Add(new Paragraph($"Most Dispatched Item: {topDispatched} \n"));
-            doc.Add(new Paragraph($"Most Restocked Item: {topRestocked} \n"));
-            doc.Add(new Paragraph($"Most Supplier on Demand: {topSupplier}  \n"));
+            AddSectionHeader(doc ,"Summary Insights");
+            doc.Add(new Paragraph($"Most Dispatched Item: {topDispatched}", FontFactory.GetFont("Arial", 11)));
+            doc.Add(new Paragraph($"Most Restocked Item: {topRestocked}", FontFactory.GetFont("Arial", 11)));
+            doc.Add(new Paragraph($"Most Supplier on Demand: {topSupplier}", FontFactory.GetFont("Arial", 11)));
 
             addDivider(doc);
 
-            doc.Add(new Paragraph("\n--- Restocked Items --- \n"));
+            //Restocked Charts
+            AddSectionHeader(doc, "Top 5 Restocked Items (Chart View)");
+            AddChartToPDF(doc, restockTable, "QTY", "ProductName", "TopRestocked");
+
+            //Dispatched Charts
+            AddSectionHeader(doc, "Top 5 Dispatched Items (Chart View)");
+            AddChartToPDF(doc, dispatchTable, "QTY", "ProductName", "TopDispatched");
+
+            addDivider(doc);
+
+            AddSectionHeader(doc, "Restocked Items");
             AddTableToPDF(doc, restockTable);
 
             addDivider(doc);
 
-            doc.Add(new Paragraph("\n--- Dispatched Items --- \n", FontFactory.GetFont("Arial", BaseFont.HELVETICA, Font.Bold, 12)));
+            AddSectionHeader(doc, "Dispatched Items");
             AddTableToPDF(doc, dispatchTable);
 
             addDivider(doc);
 
-            doc.Add(new Paragraph("\n--- Stored Products --- \n", FontFactory.GetFont("Arial", BaseFont.HELVETICA, Font.Bold, 12)));
+            AddSectionHeader(doc, "Stored Products");
             AddTableToPDF(doc, productsTable);
 
             addDivider(doc);
 
             doc.Close();
-            MessageBox.Show("PDF report generated at: \n" + path);
+            MessageBox.Show("PDF report generated at: \n" + path, "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void AddSectionHeader(Document doc, string text)
+        {
+            var headerFont = iTextSharp.text.FontFactory.GetFont("Arial", 14, iTextSharp.text.Font.BOLD, BaseColor.DARK_GRAY);
+            Paragraph header = new Paragraph(text, headerFont)
+            {
+                Alignment = Element.ALIGN_LEFT,
+                SpacingBefore = 15f,
+                SpacingAfter = 8f
+            };
+            doc.Add(header);
         }
 
         private void AddTableToPDF(Document doc, DataTable dt)
@@ -147,9 +182,9 @@ namespace Warehouse_System
             {
                 foreach (var cellData in row.ItemArray)
                 {
-                    PdfPCell cell = new PdfPCell(new Phrase(cellData?.ToString(), iTextSharp.text.FontFactory.GetFont("Arial", 7)));
+                    PdfPCell cell = new PdfPCell(new Phrase(cellData?.ToString(), iTextSharp.text.FontFactory.GetFont("Arial", 9)));
                     cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Padding = 3f;
+                    cell.Padding = 4f;
                     pdfPTable.AddCell(cell);
                 }
             }
@@ -158,8 +193,50 @@ namespace Warehouse_System
 
         private void addDivider(Document doc)
         {
-            Paragraph line = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator()));
+            Paragraph line = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator()))
+            {
+                SpacingBefore = 10f,
+                SpacingAfter = 10f
+            };
             doc.Add(line);
+        }
+
+        //Helper to add Chart to the PDF
+        private void AddChartToPDF(Document doc, DataTable dt, string yCol, string xCol, string chartTitle)
+        {
+            using (var chart = new System.Windows.Forms.DataVisualization.Charting.Chart())
+            {
+                chart.Size = new System.Drawing.Size(600, 300);
+                chart.ChartAreas.Add(new System.Windows.Forms.DataVisualization.Charting.ChartArea("Default"));
+
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series(chartTitle)
+                {
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column, IsValueShownAsLabel = true
+                };
+
+                var top5 = dt.AsEnumerable()
+                    .OrderByDescending(r => Convert.ToInt32(r[yCol]))
+                    .Take(5);
+
+                foreach (var row in top5)
+                {
+                    series.Points.AddXY(row[xCol].ToString(), Convert.ToInt32(row[yCol]));
+                }
+
+                chart.Series.Add(series);
+
+                //Save it as an Image
+                string chartPath = Path.Combine(Path.GetTempPath(), $"{chartTitle}.png");
+                chart.SaveImage(chartPath, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+
+                //Adding the Image to PDF
+                iTextSharp.text.Image chartImage = iTextSharp.text.Image.GetInstance(chartPath);
+                chartImage.Alignment = Element.ALIGN_CENTER;
+                chartImage.ScaleToFit(500f, 250f);
+                chartImage.SpacingBefore = 10f;
+                chartImage.SpacingAfter = 10f;
+                doc.Add(chartImage);
+            }
         }
 
         private void BackToLogin_Click(object sender, EventArgs e)
